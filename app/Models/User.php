@@ -48,6 +48,16 @@ class User extends Authenticatable implements PasskeyUser
         ];
     }
 
+    public function educatorProfile()
+    {
+        return $this->hasOne(EducatorProfile::class);
+    }
+
+    public function studentProfile()
+    {
+        return $this->hasOne(StudentProfile::class);
+    }
+
     /**
      * Get the user's initials
      */
