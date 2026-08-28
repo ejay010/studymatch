@@ -8,9 +8,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             @if(!$educator)
-                <div class="p-4 bg-yellow-50 text-yellow-800 rounded-lg">
-                    You haven't set up your Educator Profile yet. Please complete your profile to start receiving bookings.
+                <div class="p-4 bg-yellow-50 text-yellow-800 rounded-lg mb-6 border border-yellow-200">
+                    <h3 class="font-bold text-lg mb-1">Welcome to StudyMatch!</h3>
+                    <p>You haven't set up your Educator Profile yet. Please complete the form below to start receiving bookings.</p>
                 </div>
+                
+                <livewire:educator-profile-form />
             @else
                 <!-- Earnings Snapshot -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -28,10 +31,12 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" x-data="{ editing: false }">
                     <!-- Profile Info -->
                     <div class="lg:col-span-2 space-y-6">
-                        <div class="bg-white shadow-sm sm:rounded-lg p-6 border border-gray-100">
+                        
+                        <!-- Display View -->
+                        <div x-show="!editing" class="bg-white shadow-sm sm:rounded-lg p-6 border border-gray-100">
                             <div class="flex justify-between items-center mb-4">
                                 <h3 class="text-lg font-bold">Your Profile</h3>
                                 <a href="{{ route('tutor.show', $educator->id) }}" target="_blank" class="text-sm text-blue-600 hover:underline">View Public Profile</a>
@@ -62,6 +67,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Edit Form -->
+                        <div x-show="editing" style="display: none;">
+                            <livewire:educator-profile-form />
+                            <div class="mt-4 flex justify-end">
+                                <button @click="editing = false" class="text-sm text-gray-600 hover:text-gray-900 underline">Cancel Editing</button>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Actions -->
@@ -75,7 +88,7 @@
                                 <button class="w-full text-left px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-md transition text-sm font-medium border border-gray-200">
                                     📁 Upload Digital Resources
                                 </button>
-                                <button class="w-full text-left px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-md transition text-sm font-medium border border-gray-200">
+                                <button @click="editing = true" class="w-full text-left px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-md transition text-sm font-medium border border-gray-200">
                                     ✏️ Edit Profile Info
                                 </button>
                             </div>

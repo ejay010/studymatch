@@ -9,6 +9,10 @@ Route::get('/', function () {
 
 Route::get('/tutor/{id}', [\App\Http\Controllers\EducatorProfileController::class, 'show'])->name('tutor.show');
 
+Route::view('/classes', 'pages.classes')->name('classes.index');
+Route::view('/resources', 'pages.resources')->name('resources.index');
+Route::view('/apply', 'pages.apply')->name('apply.index');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         if (auth()->user()->role === 'educator') {

@@ -53,9 +53,14 @@
                 </div>
 
                 <!-- Actions / Profile -->
-                <div class="space-y-6">
-                    <div class="bg-white shadow-sm sm:rounded-lg p-6 border border-gray-100">
-                        <h3 class="text-lg font-bold mb-4">My Students</h3>
+                <div class="space-y-6" x-data="{ editingStudent: false }">
+                    <div x-show="!editingStudent" class="bg-white shadow-sm sm:rounded-lg p-6 border border-gray-100">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-bold">My Student</h3>
+                            @if(isset($studentProfile) && $studentProfile->grade_level)
+                                <button @click="editingStudent = true" class="text-sm text-blue-600 hover:underline">Edit Profile</button>
+                            @endif
+                        </div>
                         <div class="space-y-3">
                             <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-md border border-gray-200">
                                 <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold">
@@ -63,12 +68,40 @@
                                 </div>
                                 <div>
                                     <div class="font-medium text-gray-900">{{ auth()->user()->name }}'s Child</div>
-                                    <div class="text-xs text-gray-500">Grade level not set</div>
+                                    <div class="text-xs text-gray-500">
+                                        @if(isset($studentProfile) && $studentProfile->grade_level)
+                                            Grade {{ $studentProfile->grade_level }}
+                                        @else
+                                            Grade level not set
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
-                            <button class="w-full text-center px-4 py-2 bg-white hover:bg-gray-50 rounded-md transition text-sm font-medium border border-gray-200 border-dashed text-gray-600">
-                                + Add Student
-                            </button>
+                            @if(!isset($studentProfile) || !$studentProfile->grade_level)
+                                <button @click="editingStudent = true" class="w-full text-center px-4 py-2 bg-white hover:bg-gray-50 rounded-md transition text-sm font-medium border border-gray-200 border-dashed text-gray-600">
+                                    + Set up Student Profile
+                                </button>
+                            @else
+                                @if($studentProfile->subjects_of_interest)
+                                    <div class="mt-3">
+                                        <p class="text-xs font-bold text-gray-500 uppercase">Subjects</p>
+                                        <p class="text-sm text-gray-700">{{ implode(', ', $studentProfile->subjects_of_interest) }}</p>
+                                    </div>
+                                @endif
+                                @if($studentProfile->learning_styles)
+                                    <div class="mt-2">
+                                        <p class="text-xs font-bold text-gray-500 uppercase">Learning Style</p>
+                                        <p class="text-sm text-gray-700">{{ implode(', ', $studentProfile->learning_styles) }}</p>
+                                    </div>
+                                @endif
+                            @endif
+                        </div>
+                    </div>
+
+                    <div x-show="editingStudent" style="display: none;">
+                        <livewire:student-profile-form />
+                        <div class="mt-4 flex justify-end">
+                            <button @click="editingStudent = false" class="text-sm text-gray-600 hover:text-gray-900 underline">Cancel</button>
                         </div>
                     </div>
                 </div>

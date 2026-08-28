@@ -25,10 +25,10 @@
                     </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8 font-medium text-gray-600">
-                    <a href="{{ route('home') }}" class="hover:text-blue-600 transition">Find a Tutor</a>
-                    <a href="{{ route('home') }}" class="hover:text-blue-600 transition">Small Group Classes</a>
-                    <a href="{{ route('home') }}" class="hover:text-blue-600 transition">Resource Store</a>
-                    <a href="{{ route('home') }}" class="text-blue-600 hover:text-blue-800 transition">Apply to Teach</a>
+                    <a href="{{ route('home') }}" class="hover:text-blue-600 transition {{ request()->routeIs('home') ? 'text-blue-600' : '' }}">Find a Tutor</a>
+                    <a href="{{ route('classes.index') }}" class="hover:text-blue-600 transition {{ request()->routeIs('classes.index') ? 'text-blue-600' : '' }}">Small Group Classes</a>
+                    <a href="{{ route('resources.index') }}" class="hover:text-blue-600 transition {{ request()->routeIs('resources.index') ? 'text-blue-600' : '' }}">Resource Store</a>
+                    <a href="{{ route('apply.index') }}" class="text-blue-600 hover:text-blue-800 transition font-semibold">Apply to Teach</a>
                 </div>
                 <div class="flex items-center space-x-4">
                     @auth
