@@ -21,8 +21,18 @@ class Transaction extends Model
         'commission_amount' => 'decimal:2',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function purchasable()
     {
         return $this->morphTo();
+    }
+
+    public function getEducatorPayoutAttribute(): float
+    {
+        return (float)max(0, $this->amount - $this->commission_amount);
     }
 }

@@ -14,6 +14,7 @@ class EducatorProfile extends Model
         'bio',
         'qualifications',
         'hourly_rate',
+        'tier',
         'is_verified',
         'timezone',
     ];
@@ -27,5 +28,25 @@ class EducatorProfile extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function availabilities()
+    {
+        return $this->hasMany(EducatorAvailability::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function groupClasses()
+    {
+        return $this->hasMany(GroupClass::class);
+    }
+
+    public function digitalResources()
+    {
+        return $this->hasMany(DigitalResource::class);
     }
 }

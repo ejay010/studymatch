@@ -22,4 +22,14 @@ class Booking extends Model
         'ends_at' => 'datetime',
         'max_capacity' => 'integer',
     ];
+
+    public function educatorProfile()
+    {
+        return $this->belongsTo(EducatorProfile::class);
+    }
+
+    public function studentProfile()
+    {
+        return $this->belongsTo(StudentProfile::class);
+    }
 }

@@ -18,5 +18,26 @@ class StudentProfile extends Model
         'subjects_of_interest' => 'array',
         'learning_styles' => 'array',
         'grade_level' => 'integer',
+        'is_premium' => 'boolean',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function enrollments()
+    {
+        return $this->hasMany(ClassEnrollment::class);
+    }
+
+    public function groupClasses()
+    {
+        return $this->belongsToMany(GroupClass::class, 'class_enrollments');
+    }
 }

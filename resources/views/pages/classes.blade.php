@@ -1,14 +1,19 @@
 <x-layouts.public title="Small Group Classes - StudyMatch">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center min-h-[60vh] flex flex-col justify-center">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-6">
-            Small Group Classes
-        </h1>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-10">
-            Join engaging, interactive group classes led by verified educators. Perfect for homeschool cohorts and after-school enrichment.
-        </p>
-        <div class="bg-blue-50 border border-blue-100 rounded-lg p-8 max-w-lg mx-auto">
-            <h2 class="text-2xl font-bold text-blue-900 mb-2">Coming Soon!</h2>
-            <p class="text-blue-700">We are currently beta-testing our classroom orchestrator. Check back soon for our full catalog of classes.</p>
+    <div class="bg-gradient-to-b from-blue-50/50 to-white py-12 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800 uppercase tracking-wider mb-3">
+                Homeschool & Enrichment Cohorts
+            </span>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
+                Small-Group Classes
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Interactive cohorts capped at 4–6 students. Taught live by verified educators for focused peer learning.
+            </p>
         </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <livewire:group-class-catalog />
     </div>
 </x-layouts.public>

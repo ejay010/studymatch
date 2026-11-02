@@ -58,6 +58,16 @@ class User extends Authenticatable implements PasskeyUser
         return $this->hasOne(StudentProfile::class);
     }
 
+    public function resourcePurchases()
+    {
+        return $this->hasMany(ResourcePurchase::class);
+    }
+
+    public function purchasedResources()
+    {
+        return $this->belongsToMany(DigitalResource::class, 'resource_purchases');
+    }
+
     /**
      * Get the user's initials
      */
